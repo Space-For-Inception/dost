@@ -1,5 +1,4 @@
 # DOST
-<hr>
 > Q. What is it ? 
 >> Whatsapp Bot
 
