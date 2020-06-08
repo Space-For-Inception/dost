@@ -11,17 +11,18 @@ def hello():
     return str(resp)
 
 @app.route("/sms", methods=['POST'])
-def sms_reply():
+def main():
     msg = request.form.get('Body')
 
-    msg = msg.lower().split()
+    msg = msg.lower()
 
     # print(msg)
 
     resp = MessagingResponse()
-    resp.message(msg[0])
+    resp.message(msg[)
 
     return str(resp)
+
 
 if __name__ == "__main__":
     app.run(debug=True)
