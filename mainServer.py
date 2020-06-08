@@ -5,10 +5,10 @@ from messages import Main_Menu, Error_Reply
 from wiki import wiki
 from covid import covid
 
-def menu(nothing:str):
+def menu(nothing:str=''):
     return Main_Menu
 
-def error(nothing:str):
+def error(nothing:str=''):
     return Error_Reply
 
 validInputs = {
@@ -38,10 +38,19 @@ def main():
     print(request.form)
     msg = request.form.get('Body').lower().split()
 
-    if msg[0] in validInputs:
-        msg = validInputs[msg[0](' '.join(msg[1:]))]
+    if len(msg) == 1:
+        arg = ''
+    elif len(msg) == 2:
+        arg = msg[1]
     else:
-        msg = validInputs[msg["error"](' '.join(msg[1:]))]
+        arg = ' '.join(msg[1:])
+
+    msg = msg[0]
+
+    if msg in validInputs:
+        msg = validInputs[msg](arg)
+    else:
+        msg = validInputs["error"]()
 
     resp = MessagingResponse()
     resp.message(msg)
