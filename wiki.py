@@ -22,10 +22,11 @@ def wiki(search):
         for getit in range(0,len_of_string):                        # it will check wheather the paragraph contian data.
             if(getit == search):
                 break
-    print(result.text)
+
+    return result.text + f"\n\nFor more information visit : "+url
 
 
 
 if __name__ == '__main__':
-    search = "hindi language"
-    wiki(search)
+    search = "tree"
+    print(wiki(search))
