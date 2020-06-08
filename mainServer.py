@@ -16,10 +16,10 @@ def sms_reply():
 
     msg = msg.lower().split()
 
-    print(msg)
+    # print(msg)
 
     resp = MessagingResponse()
-    resp.message(msg)
+    resp.message(msg[0])
 
     return str(resp)
 
