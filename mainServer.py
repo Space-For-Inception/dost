@@ -5,10 +5,10 @@ from messages import Main_Menu, Error_Reply
 from wiki import wiki
 from covid import covid
 
-def menu(str:nothing):
+def menu(nothing:str):
     return Main_Menu
 
-def error(str:nothing):
+def error(nothing:str):
     return Error_Reply
 
 validInputs = {
