@@ -21,3 +21,17 @@ These are the following services I can offer.:
 """
 
 Error_Reply = "Invalid Option. please type *info or *help for help."
+
+intro_page = """
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Space for Inception</title>
+</head>
+<body>
+    <p style = 'font-size:2 em;'> <a href="whatsapp://send?phone=<+1 415 523 8886>&text=join teacher-spite">Join our Whatspp Chatbot Now!</a></p>
+</body>
+</html>
+"""

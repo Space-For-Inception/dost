@@ -16,6 +16,7 @@ def video(search=''):
 
     base_url = "https://www.youtube.com"
     query = f"/results?search_query={search_item}"
+    print(f"Searching for : {base_url + query}")
     soup = BeautifulSoup(
         urlopen(base_url + query).read(),    # Web Page to Open
         'html.parser'           # Parser to use
@@ -23,12 +24,14 @@ def video(search=''):
     
     results = soup.find_all('a',{'class':'yt-uix-sessionlink'}) # Get all contents from the Session Links
 
+    print(len(results))
+
     for link in results:
         vid_link = link.get("href")
         if "watch" in vid_link:
             return f"Here is your Youtube Video for {search} : " + base_url + vid_link
     
 if __name__ == '__main__':
-    search = "Tom"
+    search = input("Enter what to Search : ")
     search = search.split(' ')
     print(video(search=search))
