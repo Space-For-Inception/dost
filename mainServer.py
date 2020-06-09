@@ -4,6 +4,7 @@ from twilio.twiml.messaging_response import MessagingResponse
 from messages import Main_Menu, Error_Reply
 from wiki import wiki
 from covid import covid
+from video import video
 
 def menu(nothing:str=''):
     return Main_Menu
@@ -15,6 +16,7 @@ validInputs = {
     "help":menu,
     "info":menu,
     "wiki":wiki,
+    "video":video,
     "covid":covid,
     "error":error
 }
@@ -43,7 +45,7 @@ def main():
     elif len(msg) == 2:
         arg = msg[1]
     else:
-        arg = ' '.join(msg[1:])
+        arg = msg[1:]
 
     msg = msg[0]
 
