@@ -4,17 +4,19 @@ from twilio.twiml.messaging_response import MessagingResponse
 from messages import Main_Menu, Error_Reply
 from wiki import wiki
 from covid import covid
+from video import video
 
-def menu(str:nothing):
+def menu(nothing:str=''):
     return Main_Menu
 
-def error(str:nothing):
+def error(nothing:str=''):
     return Error_Reply
 
 validInputs = {
     "help":menu,
     "info":menu,
     "wiki":wiki,
+    "video":video,
     "covid":covid,
     "error":error
 }
@@ -38,10 +40,19 @@ def main():
     print(request.form)
     msg = request.form.get('Body').lower().split()
 
-    if msg[0] in validInputs:
-        msg = validInputs[msg[0](' '.join(msg[1:]))]
+    if len(msg) == 1:
+        arg = ''
+    elif len(msg) == 2:
+        arg = msg[1]
     else:
-        msg = validInputs[msg["error"](' '.join(msg[1:]))]
+        arg = msg[1:]
+
+    msg = msg[0]
+
+    if msg in validInputs:
+        msg = validInputs[msg](arg)
+    else:
+        msg = validInputs["error"]()
 
     resp = MessagingResponse()
     resp.message(msg)
