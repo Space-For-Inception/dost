@@ -7,8 +7,12 @@ from urllib.request import urlopen
 def video(search=''):
     if isinstance(search, list):
         search_item = '+'.join(search)
+        search = " ".join(search)
     elif search == '':
         search_item = "India"
+        search = "India"
+    else:
+        search_item = search
 
     base_url = "https://www.youtube.com"
     query = f"/results?search_query={search_item}"
