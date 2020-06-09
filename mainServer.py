@@ -1,7 +1,7 @@
 from flask import Flask,request
 from twilio.twiml.messaging_response import MessagingResponse
 
-from messages import Main_Menu, Error_Reply
+from messages import Main_Menu, Error_Reply, intro_page
 from wiki import wiki
 from covid import covid
 from video import video
@@ -31,9 +31,7 @@ app = Flask(__name__)
 
 @app.route("/")
 def hello():
-    resp = MessagingResponse()
-    resp.message("Hello World")
-    return str(resp)
+    return intro_page
 
 @app.route("/sms", methods=['POST'])
 def main():
