@@ -5,8 +5,10 @@ def wiki(search=''):
 
     if isinstance(search, list):
         search_item = '_'.join(search)
+        search = " ".join(search)
     elif search == '':
         search_item = "India"
+        search = "India"
     else:
         search_item = search
     
