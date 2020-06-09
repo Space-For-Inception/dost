@@ -2,8 +2,14 @@ import requests
 from bs4 import BeautifulSoup
 
 
-def covid(search = "India"):
-    url = "https://www.worldometers.info/coronavirus/country/"+search
+def covid(search = ''):
+    
+    if isinstance(search, list):
+        search_item = '-'.join(search)
+    elif search == '':
+        search_item = "India"
+
+    url = "https://www.worldometers.info/coronavirus/country/"+search_item
     res = requests.get(url)
     soup = BeautifulSoup(res.content , 'html.parser')
 
@@ -16,9 +22,9 @@ def covid(search = "India"):
 
         final.append(result)
 
-    final = ['\n\n'.join(final), "\n\nFor more information, visit : " + url]
+    final = '\n\n'.join(final)+f"\n\n\n\nFor more information on {search}, visit : " + url
     
-    return '\n\n'.join(final)
+    return final
 
 
 if __name__ == '__main__':
