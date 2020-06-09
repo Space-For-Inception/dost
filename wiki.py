@@ -5,8 +5,12 @@ def wiki(search=''):
 
     if isinstance(search, list):
         search_item = '_'.join(search)
+        search = " ".join(search)
     elif search == '':
         search_item = "India"
+        search = "India"
+    else:
+        search_item = search
     
     url = "https://en.wikipedia.org/wiki/"+search_item
     soup = BeautifulSoup(requests.get(url).content, 'html.parser')
