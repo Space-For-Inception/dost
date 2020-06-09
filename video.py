@@ -4,9 +4,9 @@ from bs4 import BeautifulSoup
 from urllib.request import urlopen
 
 
-def video(search="#"):
+def video(search="India"):
     search =search.split(' ')
-    
+
     if isinstance(search, list):
         search = '+'.join(search)
 
