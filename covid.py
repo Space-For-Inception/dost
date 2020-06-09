@@ -8,6 +8,8 @@ def covid(search = ''):
         search_item = '-'.join(search)
     elif search == '':
         search_item = "India"
+    else:
+        search_item = search
 
     url = "https://www.worldometers.info/coronavirus/country/"+search_item
     res = requests.get(url)

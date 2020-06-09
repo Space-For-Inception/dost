@@ -9,6 +9,8 @@ def video(search=''):
         search_item = '+'.join(search)
     elif search == '':
         search_item = "India"
+    else:
+        search_item = search
 
     base_url = "https://www.youtube.com"
     query = f"/results?search_query={search_item}"
