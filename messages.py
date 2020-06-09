@@ -31,7 +31,7 @@ intro_page = """
     <title>Space for Inception</title>
 </head>
 <body>
-    <p style = 'font-size:2 em;'> <a href="whatsapp://send?phone=<+1 415 523 8886>&text=join teacher-spite!">Join our Whatspp Chatbot Now!</a></p>
+    <p style = 'font-size:2 em;'> <a href="whatsapp://send?phone=<+1 415 523 8886>&text=join teacher-spite">Join our Whatspp Chatbot Now!</a></p>
 </body>
 </html>
 """
