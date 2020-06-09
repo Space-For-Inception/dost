@@ -18,6 +18,7 @@ validInputs = {
     "wiki":wiki,
     "video":video,
     "covid":covid,
+    "youtube":video,
     "error":error
 }
 
