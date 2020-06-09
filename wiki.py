@@ -4,7 +4,12 @@ from bs4 import BeautifulSoup
 
 def wiki(search):
     count=0
-    url = "https://en.wikipedia.org/wiki/"+search               
+    
+    if isinstance(search, list):
+        search = '_'.join(search)
+    
+    url = "https://en.wikipedia.org/wiki/"+search
+
     res = requests.get(url)                                         # get the html source code.
     soup = BeautifulSoup(res.content, 'html.parser')
 
