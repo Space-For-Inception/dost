@@ -5,6 +5,7 @@ from messages import Main_Menu, Error_Reply, intro_page
 from wiki import wiki
 from covid import covid
 from video import video
+from sender import sendMessage
 
 def menu(nothing:str=''):
     return Main_Menu
@@ -36,7 +37,9 @@ def hello():
 
 @app.route("/sms", methods=['POST'])
 def main():
-    print(request.form)
+    To      = request.form.get('To')[8:]
+    From    = request.form.get('From')[8:]
+
     msg = request.form.get('Body').lower().split()
 
     if len(msg) == 1:
