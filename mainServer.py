@@ -18,6 +18,7 @@ validInputs = {
     "wiki":wiki,
     "video":video,
     "covid":covid,
+    "youtube":video,
     "error":error
 }
 
@@ -55,7 +56,8 @@ def main():
     resp = MessagingResponse()
     resp.message(msg)
 
-    return str(resp)
+#     return str(resp)
+    return ''
 
 ################################################################################
 ################################################################################
