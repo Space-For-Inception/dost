@@ -39,8 +39,9 @@ def hello():
 
 @app.route("/sms", methods=['POST'])
 def main():
-    To      = request.form.get('To')[8:]
-    From    = request.form.get('From')[8:]
+    To      = request.form.get('To')[9:]
+    From    = request.form.get('From')[9:]
+    print(From)
 
     msg = request.form.get('Body').lower().split()
 
