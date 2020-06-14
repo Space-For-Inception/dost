@@ -76,8 +76,7 @@ def main():
     else:
         resp_message = msg
 
-    resp = MessagingResponse()
-    resp.message(resp_message)
+    sendMessage(clientPhoneNo=From, msg=resp)
 
     return str(resp)
 
