@@ -12,7 +12,7 @@ from news import news
 def menu(nothing:str=''):
     return shortMenu
 
-def longMenu():
+def longMenu(nothing:str=''):
     return MainMenu
 
 def error(nothing:str=''):
