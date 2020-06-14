@@ -74,7 +74,7 @@ def main():
 
         resp_message = msg[-1]
     else:
-        resp_message = msg
+        resp = msg
 
     sendMessage(clientPhoneNo=From, msg=resp)
 
