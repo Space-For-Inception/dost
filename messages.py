@@ -18,6 +18,12 @@ These are the following services I can offer.:
     
     _example : 
         youtube Tom and Jerry_
+
+3. *Lyrics of Song* -- 
+    Search for the Lyrics of your Favourite Song.
+    
+    _example : 
+        youtube Tom and Jerry_
 """
 
 Error_Reply = "Invalid Option. please type *info or *help for help."
@@ -72,4 +78,8 @@ intro_page = """
     <a class="button" href="whatsapp://send?phone=<+1 415 523 8886>&text=join teacher-spite" role="button">Join</a>
 </body>
 </html>
+"""
+
+n = """
+
 """

@@ -14,17 +14,16 @@ def video(search=''):
     else:
         search_item = search
 
+    # search = search.replace(" ", "+")
+
     base_url = "https://www.youtube.com"
     query = f"/results?search_query={search_item}"
-    print(f"Searching for : {base_url + query}")
+
     soup = BeautifulSoup(
-        urlopen(base_url + query).read(),    # Web Page to Open
+        requests.get(base_url + query).content,    # Web Page to Open
         'html.parser'           # Parser to use
     )
-    
     results = soup.find_all('a',{'class':'yt-uix-sessionlink'}) # Get all contents from the Session Links
-
-    print(len(results))
 
     for link in results:
         vid_link = link.get("href")

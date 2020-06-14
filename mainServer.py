@@ -1,7 +1,7 @@
 from flask import Flask,request
 from twilio.twiml.messaging_response import MessagingResponse
 
-from messages import Main_Menu, Error_Reply, intro_page
+from messages import Main_Menu, Error_Reply, intro_page, n
 from wiki import wiki
 from covid import covid
 from video import video
@@ -55,12 +55,21 @@ def main():
         msg = validInputs[msg](arg)
     else:
         msg = validInputs["error"]()
+    
+    resp_message = ''
+
+    if isinstance(msg, list):
+        resp_message = msg[-1]
+
+        for msg_part in msg:
+            sendMessage(clientPhoneNo=To,msg=msg_part)
+    else:
+        resp_message = msg
 
     resp = MessagingResponse()
     resp.message(msg)
 
-#     return str(resp)
-    return ''
+    return str(resp)
 
 ################################################################################
 ################################################################################

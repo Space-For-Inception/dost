@@ -20,6 +20,10 @@ def Lyrics(song_title=""):
         response = f"Lyrics for {song_title} is as follows : \n\n{song_lyrics}"
     else:
         response = f"No lyrics found for {song_title}"
+    
+
+    if len(response)>1000:
+        response = response.split("\n\n")
 
     return response
 
