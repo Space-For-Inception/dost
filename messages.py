@@ -32,7 +32,7 @@ These are the following services I can offer.:
     example : 
         youtube Tom and Jerry
         
-3. *Youtube Video* -- 
+3. *Download Youtube Video* -- 
     Responds you with the download link to most Relevent 3 Videos.
     
     example : 
