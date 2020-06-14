@@ -55,14 +55,20 @@ def main():
         msg = validInputs[msg](arg)
     else:
         msg = validInputs["error"]()
-    
-    resp_message = ''
 
     if isinstance(msg, list):
+        resp_message = ['']
+
+        for msg_part in msg[:-1]
+            if (len(msg_part)+len(resp_message[-1]) < 1299:
+                resp_message[-1]+="\n"+msg_part
+            else:
+                resp_message.append(msg_part)
+        for resp in resp_message:
+            sendMessage(clientPhoneNo=To,msg=resp_message)
+
         resp_message = msg[-1]
 
-        for msg_part in msg:
-            sendMessage(clientPhoneNo=To,msg=msg_part)
     else:
         resp_message = msg
 

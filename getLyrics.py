@@ -20,15 +20,33 @@ def Lyrics(song_title=""):
         response = f"Lyrics for {song_title} is as follows : \n\n{song_lyrics}"
     else:
         response = f"No lyrics found for {song_title}"
-    
+
+    respList = []
 
     if len(response)>1000:
-        response = response.split("\n\n")
+       response = response.split("\n")
+       #for seg in range(1, len(response)-100):
+           
 
     return response
 
 if __name__ == "__main__":
-    song_title = "Afreen"
+    from sender import sendMessage
+
+    song_title = "Vande Mataram"
     song_title = song_title.split()
+
+    response = Lyrics(song_title)
+
+    if isinstance(response,list):
+        sendMessage(msg="\n\n".join(response[:2]))
+
+        for stanza in response[2:-2]:
+            sendMessage(msg=stanza)
+
+        sendMessage(msg="\n\n".join(response[-2:]))
+    else:
+        sendMessage(msg=response)
+
     
-    print(Lyrics(song_title))
+    print(response)
