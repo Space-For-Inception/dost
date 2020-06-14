@@ -12,7 +12,7 @@ def getLyrics(song_title=""):
         song_title = "Vande Mataram"
     
     extract_lyrics = Song_Lyrics(GCS_API_KEY, GCS_ENGINE_ID)
-    song_head, song_lyrics = extract_lyrics.get_lyrics(song_title.replace(" ",' '))
+    song_head, song_lyrics = extract_lyrics.get_lyrics(song_title.replace(" ",'%20'))
 
     response = ''
 
