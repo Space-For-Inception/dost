@@ -2,41 +2,35 @@ import requests
 from bs4 import BeautifulSoup
 
 
-def covid(search):
-    url = "https://www.worldometers.info/coronavirus/country/"+search
+def covid(search = ''):
+    
+    if isinstance(search, list):
+        search_item = '-'.join(search)
+        search = " ".join(search)
+    elif search == '':
+        search_item = "India"
+        search = "India"
+    else:
+        search_item = search
+
+    url = "https://www.worldometers.info/coronavirus/country/"+search_item
     res = requests.get(url)
-    COUNT = 0 
     soup = BeautifulSoup(res.content , 'html.parser')
-    # cases = soup.find('div', id= 'content-inner')
-    listing = []
 
     getting = ""
     final = []
 
     for data in soup.find_all('div' , id="maincounter-wrap"):
-        result = data.text 
-        listing.append(result)
+        result = data.text.strip().split('\n\n')
+        result = '\t'.join(result)
+
+        final.append(result)
+
+    final = '\n\n'.join(final)+f"\n\n\n\nFor more information on {search}, visit : " + url
     
-    
-    for correcting in listing:
-        if(correcting != "\n"):
-            getting = getting+correcting
-            print(getting)
-        getting = ""
-        # for ass in correcting:
-        #     if(ass!= "\n"):
-        #         pass
-            
-            
-        #     final.append(ass)
-
-    # print(final)    
-    # for show in final:
-    #     print(show + "\n")
-
-
+    return final
 
 
 if __name__ == '__main__':
-    search = "india"
-    covid(search)
+    # search = "india"
+    print(covid())
