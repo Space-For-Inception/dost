@@ -39,7 +39,8 @@ def video(search=''):
         vid_link = link.get("href")
         if "watch" in vid_link:
             vid_counter+=1
-            resp.append(f"The {vid_counter}{sub[vid_counter]} most relevent Video reguarding --> {search} : "+ n + base_url + vid_link)
+            if vid_counter%2 == 0:
+                resp.append(f"The {int(vid_counter/2)}{sub[int(vid_counter/2)]} *most relevent* \nVideo reguarding --> {search} : "+ n + base_url + vid_link)
         
         if len(resp) == 3:
             break
@@ -49,24 +50,36 @@ def video(search=''):
 
     return resp
 
+
 def download_video(search=""):
-    pass
+    youtubeLinks = video(search)
+
+    dlLinks = []
+    if isinstance(youtubeLinks, list):
+        place = 63 + len(" ".join(search))
+        for link in youtubeLinks:
+            dlLinks.append(link[:place]+'ss'+link[place:])
+    else:
+        dlLinks = youtubeLinks
+        
+    return dlLinks
+
 
     
 if __name__ == '__main__':
-    search = input("Enter what to Search : ")
+    # search = input("Enter what to Search : ")
+    search = "Ped Paudha"
     search = search.split(' ')
 
-    response = video(search=search)
+    response = download_video(search=search)
 
     if isinstance(response,list):
-        sendMessage(msg="\n\n".join(response[:2]))
+        for video in response[:-1]:
+            sendMessage(msg=video)
+            print(video)
+        
+        response = response[-1]
+    
 
-        if len(response)>4:
-            for video in response[2:-2]:
-                sendMessage(msg=video)
-
-        sendMessage(msg="\n\n".join(response[-2:]))
-    else:
-        sendMessage(msg=response)
+    sendMessage(msg=response)
     print(response)
