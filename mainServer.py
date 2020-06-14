@@ -62,7 +62,7 @@ def main():
         resp_message = msg[:-1]
 
         for resp in resp_message:
-            sendMessage(clientPhoneNo=To,msg=resp_message)
+            sendMessage(clientPhoneNo=From,msg=resp)
 
         resp_message = msg[-1]
     else:
