@@ -59,11 +59,12 @@ def main():
     if isinstance(msg, list):
         resp_message = ['']
 
-        for msg_part in msg[:-1]
-            if (len(msg_part)+len(resp_message[-1]) < 1299:
+        for msg_part in msg[:-1]:
+            if len(msg_part)+len(resp_message[-1]) < 1299:
                 resp_message[-1]+="\n"+msg_part
             else:
                 resp_message.append(msg_part)
+
         for resp in resp_message:
             sendMessage(clientPhoneNo=To,msg=resp_message)
 
