@@ -24,8 +24,8 @@ def sendMessage(clientPhoneNo:str = '+917798044008', msg:str = 'Hello World'):
     message = client.messages.create( 
                                 from_='whatsapp:+14155238886',  
                                 body =msg,      
-                                to   =f'whatsapp:{clientPhoneNo}' 
-                            )
+                                to   =f'whatsapp:{clientPhoneNo}'
+            )           
 
 if __name__ == "__main__":
     cool = "C"+"O"*2+"L"
