@@ -32,19 +32,19 @@ These are the following services I can offer.:
     example : 
         youtube Tom and Jerry
         
-3. *Download Youtube Video* -- 
+4. *Download Youtube Video* -- 
     Responds you with the download link to most Relevent 3 Videos.
     
     example : 
         dvideo Tom and Jerry
 
-4. *Lyrics of Song* -- 
+5. *Lyrics of Song* -- 
     Get the Lyrics of your Favourite Song.
     
     example : 
         lyrics Vande Mataram
 
-5. *Latest News* -- 
+6. *Latest News* -- 
     Get the Latest.
     
     example : 
