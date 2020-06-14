@@ -1,7 +1,22 @@
-from twilio.rest import Client 
- 
-account_sid = 'AC91f82bcbaa098fc043cdd757e3a718d1'
-auth_token = '0efe2c96bcf54b6cb652137a9407adcc'
+from twilio.rest import Client
+import QBTTXPSE
+
+def getIt(what:str = None):
+    QXE = ''
+    if what == 'AC':
+        key = QBTTXPSE.AC
+        QXE += 'AC'
+    else:
+        key = QBTTXPSE.extra
+    for Q in key:
+        if len(Q) == 1:
+            QXE+= Q
+        else:
+            QXE+= hex(int(Q)).lstrip('0x')
+    return QXE
+
+account_sid = getIt('AC')
+auth_token = getIt()
 
 client = Client(account_sid, auth_token) 
 
@@ -13,6 +28,6 @@ def sendMessage(clientPhoneNo:str = '+917798044008', msg:str = 'Hello World'):
                             )
 
 if __name__ == "__main__":
-    cool = "C"+"O"*8+"L"
-    for i in range(10):
-        sendMessage(msg=f"*{cool[i]}*")
+    cool = "C"+"O"*2+"L"
+    for ch in cool:
+        sendMessage(msg=f"*{ch}*")

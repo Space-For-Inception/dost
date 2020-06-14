@@ -1,26 +1,35 @@
 from flask import Flask,request
 from twilio.twiml.messaging_response import MessagingResponse
 
-from messages import Main_Menu, Error_Reply, intro_page, n
+from messages import shortMenu, MainMenu, ErrorReply, introPage, n
 from wiki import wiki
 from covid import covid
-from video import video
+from video import video, download_video
 from sender import sendMessage
 from lyrics import getLyrics
+from news import news
 
 def menu(nothing:str=''):
-    return Main_Menu
+    return shortMenu
+
+def longMenu():
+    return MainMenu
 
 def error(nothing:str=''):
-    return Error_Reply
+    return ErrorReply
+
+
 
 validInputs = {
     "help":menu,
     "info":menu,
+    "help-all":longMenu,
     "wiki":wiki,
     "video":video,
     "covid":covid,
+    "news":news,
     "youtube":video,
+    "dvideo":download_video,
     "lyrics":getLyrics,
     "error":error
 }
@@ -35,11 +44,10 @@ app = Flask(__name__)
 
 @app.route("/")
 def hello():
-    return intro_page
+    return introPage
 
 @app.route("/sms", methods=['POST'])
 def main():
-    To      = request.form.get('To')[9:]
     From    = request.form.get('From')[9:]
 
     msg = request.form.get('Body').lower().split()
@@ -84,5 +92,5 @@ def main():
 
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run()
     # app.run()
