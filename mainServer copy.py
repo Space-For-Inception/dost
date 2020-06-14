@@ -59,17 +59,16 @@ def main():
         msg = validInputs["error"]()
 
     if isinstance(msg, list):
-        resp_message = msg[:-1]
 
-        for resp in resp_message:
-            sendMessage(clientPhoneNo=To,msg=resp_message)
+        for resp in msg[:-1]:
+            sendMessage(clientPhoneNo=To,msg=resp)
 
         resp_message = msg[-1]
     else:
         resp_message = msg
 
     resp = MessagingResponse()
-    resp.message(resp_message)
+    resp.message(msg)
 
     return str(resp)
 
