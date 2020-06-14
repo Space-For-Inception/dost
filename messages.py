@@ -31,6 +31,12 @@ These are the following services I can offer.:
     
     example : 
         youtube Tom and Jerry
+        
+3. *Youtube Video* -- 
+    Responds you with the download link to most Relevent 3 Videos.
+    
+    example : 
+        dvideo Tom and Jerry
 
 4. *Lyrics of Song* -- 
     Get the Lyrics of your Favourite Song.
