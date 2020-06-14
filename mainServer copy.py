@@ -41,6 +41,7 @@ def hello():
 def main():
     To      = request.form.get('To')[8:]
     From    = request.form.get('From')[8:]
+    print(From)
 
     msg = request.form.get('Body').lower().split()
 
