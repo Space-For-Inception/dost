@@ -50,7 +50,7 @@ def hello():
 
 @app.route("/sms", methods=['POST'])
 def main():
-    From    = request.form.get('From')[9:]
+    From    = request.form.get('From')
     msg     = request.form.get('Body').lower().split()
 
     if len(msg) == 1:
@@ -76,11 +76,11 @@ def main():
 
         resp_message = msg[-1]
     else:
-        resp = msg
+        resp_message = msg
 
-    sendMessage(clientPhoneNo=From, msg=resp)
+    sendMessage(clientPhoneNo=From, msg=resp_message)
 
-    return str(resp)
+    return str(resp_message)
 
 ################################################################################
 ################################################################################
@@ -93,5 +93,5 @@ def main():
 
 
 if __name__ == "__main__":
-    app.run()
+    app.run(debug=True)
     # app.run()

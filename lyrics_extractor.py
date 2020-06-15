@@ -89,7 +89,7 @@ class Song_Lyrics():
                     # This Prints out newlines instead of <br> tags
                     lyrics += extract[i].get_text(separator="\n").strip() + '<br><br>'
                 title = title
-
+                
             # Method 6 LyricsMint
             elif 'lyricsmint' in get_data:
                 extract = soup.select("#lyrics p")
