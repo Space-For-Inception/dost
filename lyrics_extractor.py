@@ -92,7 +92,7 @@ class Song_Lyrics():
 
             # Method 6 LyricsMint
             elif 'lyricsmint' in get_data:
-                extract = soup.select("#lyric p")
+                extract = soup.select("#lyrics p")
                 lyrics = ''
 
                 for i in range(len(extract)):
