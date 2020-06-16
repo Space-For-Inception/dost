@@ -51,7 +51,7 @@ These are the following services I can offer.:
         news
 """
 
-ErrorReply = "Invalid Option. please type *info or *help for help."
+ErrorReply = "Invalid Option. please type 'info' or 'help' for help."
 
 introPage = """
 <!DOCTYPE html>

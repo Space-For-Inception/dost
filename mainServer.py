@@ -68,9 +68,8 @@ def main():
         msg = validInputs["error"]()
 
     if isinstance(msg, list):
-
-        for resp in msg:
-            sendMessage(clientPhoneNo=From,msg=resp)
+        for resp_message in msg:
+            sendMessage(clientPhoneNo=From,msg=resp_message)
             sleep(0.5)
         
         resp_message = "Type help for more options."
@@ -78,7 +77,7 @@ def main():
         resp_message = msg + "\n\nType help for more options."
 
     sendMessage(clientPhoneNo=From, msg=resp_message)
-    
+
     return str(resp_message)
 
 ################################################################################

@@ -16,6 +16,15 @@ def getLyrics(song_title=""):
 
     if song_lyrics == '':
         song_head, song_lyrics = extract_lyrics.get_lyrics(song_title)
+        
+    if song_lyrics == '':
+        song_head, song_lyrics = extract_lyrics.get_lyrics(song_title)
+    
+    if song_lyrics == '':
+        song_head, song_lyrics = extract_lyrics.get_lyrics(song_title)
+
+    if song_lyrics == '':
+        song_head, song_lyrics = extract_lyrics.get_lyrics(song_title)
 
     if song_lyrics != '':
         response = f"Lyrics for {song_title} is as follows : \n\n{song_lyrics}"
@@ -23,42 +32,34 @@ def getLyrics(song_title=""):
 
     else:
         response ="Err: No lyrics found for " + song_title
-
-    if isinstance(response, list):
-        resp_message = ['']
-
-        for msg_part in response:
-            if len(msg_part)+len(resp_message[-1]) < 1298:
-                print("joining msg_part : msg_part:",msg_part)
-                resp_message[-1]+="\n\n"+msg_part
-            else:
-                resp_message.append(msg_part)
-    else:
-        resp_message = response
     
-    return resp_message
+    return response
 
 if __name__ == "__main__":
     from sender import sendMessage
 
-    song_title = "Jana Gana mana"
+    song_title = "How Far I'll go"
     song_title = song_title.split()
 
     msg = getLyrics(song_title)
 
+    # print("/\\"*25,"Starting to Send Messages","/\\"*25)
+
     if isinstance(msg, list):
-        resp_message = msg
         
-        for msg_no, resp in enumerate(resp_message):
-            print(f"SMS-{msg_no+1}")
-            # print(f"Sending from inside for : {resp}")
-            sendMessage(msg=resp_message)
-            print("-"*40)
+        # for msg_no, msg_part in enumerate(msg):
+        #     print(f"SMS-{msg_no+1}")
+        #     # print(f"Sending from inside for : {msg_part}")
+        #     sendMessage(msg=msg_part)
+        #     print("-"*40)
+
+        msg = "\n\n".join(msg)        
+        sendMessage(msg)
         
-        msg_no += 1
-        resp_message = "Type help for more options."
+        msg = "Type help for more options."
     else:
-        resp_message = msg + "\n\nType help for more options."
+        msg = msg + "\n\nType help for more options."
     
-    print(f"Response : {resp_message}")
-    sendMessage(msg=resp_message)
+    # print(f"SMS-{msg_no+1}")
+    sendMessage(msg=msg)
+    # print(f"Response : {msg}")

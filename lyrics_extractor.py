@@ -37,13 +37,16 @@ class Song_Lyrics():
 
             page = requests.get(url)
             data = page.json()
-        except:
-            pass
+            
+        except Exception as e:
+            print("Error occured :",e)
 
         try:
             # Gets URL of the first Result
             get_data = data["items"][0]["link"]
+            # print(get_data)
             title = data["items"][0]["title"]
+            # print(title)
 
             # getting the url of the site
             page = requests.get(get_data)
@@ -64,6 +67,8 @@ class Song_Lyrics():
 
                 lyrics = "\n\n".join(extracted)
                 title = title[:-16]
+
+                # print("From inside : ",lyrics)
 
 
             # Method 2 Glamsham
@@ -114,9 +119,12 @@ class Song_Lyrics():
                 # print("From inside",lyrics)
                 lyrics = lyrics.replace('\n\n','\n')
             lyrics = lyrics.replace('<br>','\n')
+            
         except Exception as e:
-            # print("Exception Occured : ", e)
+            print("Exception Occured : ", e)
             title = "Err: No lyrics found for " + orig_song_name
             lyrics = ''
+        
+        print(lyrics)
 
         return title, lyrics
