@@ -15,6 +15,7 @@ class Song_Lyrics():
 
 
     def get_lyrics(self, song_name):
+        orig_song_name = song_name
         """
             Searches lyrics for the song name passed in.
             Autocorrects any song name spelling errors.
@@ -23,7 +24,7 @@ class Song_Lyrics():
             Returns title and lyrics.
         """
 
-        url = "https://www.googleapis.com/customsearch/v1?key=" + self.GCS_API_KEY + "&cx=" + self.GCS_ENGINE_ID + "&q=" + song_name + "%20lyrics"
+        url = "https://www.googleapis.com/customsearch/v1?key=" + self.GCS_API_KEY + "&cx=" + self.GCS_ENGINE_ID + "&q=" + song_name.replace(" ","%20") + "%20lyrics"
 
         page = requests.get(url)
         data = page.json()
@@ -32,7 +33,7 @@ class Song_Lyrics():
             spell = data["spelling"]["correctedQuery"]
 
             song_name = spell[:-7]
-            url = "https://www.googleapis.com/customsearch/v1?key=" + self.GCS_API_KEY + "&cx=" + self.GCS_ENGINE_ID + "&q=" + spell
+            url = "https://www.googleapis.com/customsearch/v1?key=" + self.GCS_API_KEY + "&cx=" + self.GCS_ENGINE_ID + "&q=" + spell.replace(" ","%20")
 
             page = requests.get(url)
             data = page.json()
@@ -46,13 +47,24 @@ class Song_Lyrics():
 
             # getting the url of the site
             page = requests.get(get_data)
-            soup = BeautifulSoup(page.content, 'html.parser')
+            soup = BeautifulSoup(page.content, 'lxml')
 
             # Method 1 Genius
             if 'genius' in get_data:
-                extract = soup.select(".lyrics")
-                lyrics = (extract[0].get_text()).strip()
+
+                extract = soup.findAll('div',class_="Lyrics__Container-sc-1ynbvzw-2")
+                extracted = []
+
+                for elem in extract:
+                    for br in elem.findAll('br'):
+                        br.replace_with("\n")
+                    elem = elem.get_text().strip()
+                    if elem != '':
+                        extracted.append(elem)
+
+                lyrics = "\n\n".join(extracted)
                 title = title[:-16]
+
 
             # Method 2 Glamsham
             elif 'glamsham' in get_data:
@@ -99,10 +111,12 @@ class Song_Lyrics():
                     # This Prints out newlines instead of <br> tags
                     lyrics += extract[i].get_text(separator="\n").strip() + '<br><br>'
                 title = title
-
+                # print("From inside",lyrics)
+                lyrics = lyrics.replace('\n\n','\n')
             lyrics = lyrics.replace('<br>','\n')
-        except:
-            title = "No lyrics found for " + song_name
+        except Exception as e:
+            # print("Exception Occured : ", e)
+            title = "Err: No lyrics found for " + orig_song_name
             lyrics = ''
 
         return title, lyrics
