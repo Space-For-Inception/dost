@@ -9,6 +9,8 @@ from sender import sendMessage
 from lyrics import getLyrics
 from news import news
 
+from time import sleep
+
 def menu(nothing:str=''):
     return shortMenu
 
@@ -48,9 +50,8 @@ def hello():
 
 @app.route("/sms", methods=['POST'])
 def main():
-    From    = request.form.get('From')[9:]
-
-    msg = request.form.get('Body').lower().split()
+    From    = request.form.get('From')
+    msg     = request.form.get('Body').lower().split()
 
     if len(msg) == 1:
         arg = ''
@@ -67,18 +68,17 @@ def main():
         msg = validInputs["error"]()
 
     if isinstance(msg, list):
-        resp_message = msg[:-1]
-
-        for resp in resp_message:
-            sendMessage(clientPhoneNo=From,msg=resp)
-
-        resp_message = msg[-1]
+        for resp_message in msg:
+            sendMessage(clientPhoneNo=From,msg=resp_message)
+            sleep(0.5)
+        
+        resp_message = "Type help for more options."
     else:
-        resp = msg
+        resp_message = msg + "\n\nType help for more options."
 
-    sendMessage(clientPhoneNo=From, msg=resp)
+    sendMessage(clientPhoneNo=From, msg=resp_message)
 
-    return str(resp)
+    return str(resp_message)
 
 ################################################################################
 ################################################################################
@@ -91,5 +91,5 @@ def main():
 
 
 if __name__ == "__main__":
-    app.run()
+    app.run(debug=True)
     # app.run()

@@ -32,17 +32,23 @@ def video(search=''):
     sub = {
         1:'st',
         2:'nd',
-        3:'rd'
+        3:'rd',
+        4:'th',
+        5:'th',
+        6:'th',
+        7:'th',
+        8:'th',
+        9:'th',
+        10:'th'
     }
 
-    for link in results:
-        vid_link = link.get("href")
+    for link_no in range(0, len(results), 2):
+        vid_link = results[link_no].get("href")
         if "watch" in vid_link:
             vid_counter+=1
-            if vid_counter%2 == 0:
-                resp.append(f"The {int(vid_counter/2)}{sub[int(vid_counter/2)]} *most relevent* \nVideo reguarding --> {search} : "+ n + base_url + vid_link)
+            resp.append(f"The {int(vid_counter)}{sub[int(vid_counter)]} *most relevent* \nVideo reguarding --> {search} : "+ n + base_url + vid_link)
         
-        if len(resp) == 3:
+        if len(resp) == 10:
             break
     
     if len(resp) == 0:
