@@ -48,7 +48,7 @@ def video(search=''):
             vid_counter+=1
             resp.append(f"The {int(vid_counter)}{sub[int(vid_counter)]} *most relevent* \nVideo reguarding --> {search} : "+ n + base_url + vid_link)
         
-        if len(resp) == 10:
+        if len(resp) == 3:
             break
     
     if len(resp) == 0:
