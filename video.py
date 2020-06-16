@@ -32,16 +32,23 @@ def video(search=''):
     sub = {
         1:'st',
         2:'nd',
-        3:'rd'
+        3:'rd',
+        4:'th',
+        5:'th',
+        6:'th',
+        7:'th',
+        8:'th',
+        9:'th',
+        10:'th'
     }
 
-    for link in results:
-        vid_link = link.get("href")
+    for link_no in range(0, len(results), 2):
+        vid_link = results[link_no].get("href")
         if "watch" in vid_link:
             vid_counter+=1
-            resp.append(f"The {vid_counter}{sub[vid_counter]} most relevent Video reguarding --> {search} : "+ n + base_url + vid_link)
+            resp.append(f"The {int(vid_counter)}{sub[int(vid_counter)]} *most relevent* \nVideo reguarding --> {search} : "+ n + base_url + vid_link)
         
-        if len(resp) == 3:
+        if len(resp) == 10:
             break
     
     if len(resp) == 0:
@@ -49,24 +56,36 @@ def video(search=''):
 
     return resp
 
+
 def download_video(search=""):
-    pass
+    youtubeLinks = video(search)
+
+    dlLinks = []
+    if isinstance(youtubeLinks, list):
+        place = 63 + len(" ".join(search))
+        for link in youtubeLinks:
+            dlLinks.append(link[:place]+'ss'+link[place:])
+    else:
+        dlLinks = youtubeLinks
+        
+    return dlLinks
+
 
     
 if __name__ == '__main__':
-    search = input("Enter what to Search : ")
+    # search = input("Enter what to Search : ")
+    search = "Ped Paudha"
     search = search.split(' ')
 
-    response = video(search=search)
+    response = download_video(search=search)
 
     if isinstance(response,list):
-        sendMessage(msg="\n\n".join(response[:2]))
+        for video in response[:-1]:
+            sendMessage(msg=video)
+            print(video)
+        
+        response = response[-1]
+    
 
-        if len(response)>4:
-            for video in response[2:-2]:
-                sendMessage(msg=video)
-
-        sendMessage(msg="\n\n".join(response[-2:]))
-    else:
-        sendMessage(msg=response)
+    sendMessage(msg=response)
     print(response)
