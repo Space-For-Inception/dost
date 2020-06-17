@@ -6,15 +6,20 @@ import QBTTXPSE
 debug = False
 
 def nothing(msg:str):pass
-
 def print_Message(msg:str = ""):
     print("(debug)--->>",msg)
     sleep(1)
+
+
+
 
 D = {
     False:nothing,
     True :print_Message
 }[debug]
+
+
+
 
 def getIt(what:str = None):
     QXE = ''
@@ -70,13 +75,13 @@ def __send(To:str, msg:str):
     global msg_no
     msg_no += 1
 
-    # print(f"SMS-{msg_no}" + "\n" + f"To={To}, msg={msg}"+ "\n" + "-"*40)
+    print(f"SMS-{msg_no}" + "\n" + f"To={To}, msg={msg}"+ "\n" + "-"*40)
 
-    client.messages.create( 
-        from_='whatsapp:+14155238886',  
-        body =msg,      
-        to   =f'whatsapp:{To}'
-    )
+    # client.messages.create( 
+    #     from_='whatsapp:+14155238886',  
+    #     body =msg,      
+    #     to   =f'whatsapp:{To}'
+    # )
     sleep(1)
 
 
