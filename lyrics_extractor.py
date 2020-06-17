@@ -37,7 +37,7 @@ class Song_Lyrics():
 
             page = requests.get(url)
             data = page.json()
-            print(data)
+            # print(data)
             
         except Exception as e:
             print("Error occured :",e)
@@ -126,6 +126,6 @@ class Song_Lyrics():
             title = "Err: No lyrics found for " + orig_song_name
             lyrics = ''
         
-        print(lyrics)
+        # print(lyrics)
 
         return title, lyrics

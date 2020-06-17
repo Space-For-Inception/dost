@@ -75,13 +75,13 @@ def __send(To:str, msg:str):
     global msg_no
     msg_no += 1
 
-    print(f"SMS-{msg_no}" + "\n" + f"To={To}, msg={msg}"+ "\n" + "-"*40)
+    # print(f"SMS-{msg_no}" + "\n" + f"To={To}, msg={msg}"+ "\n" + "-"*40)
 
-    # client.messages.create( 
-    #     from_='whatsapp:+14155238886',  
-    #     body =msg,      
-    #     to   =f'whatsapp:{To}'
-    # )
+    client.messages.create( 
+        from_='whatsapp:+14155238886',  
+        body =msg,      
+        to   =f'whatsapp:{To}'
+    )
     sleep(1)
 
 
