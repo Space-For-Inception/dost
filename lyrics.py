@@ -27,7 +27,7 @@ def getLyrics(song_title=""):
         song_head, song_lyrics = extract_lyrics.get_lyrics(song_title)
 
     if song_lyrics != '':
-        response = f"Lyrics for {song_title} is as follows : \n\n{song_lyrics}"
+        response = f"Lyrics for {song_head} is as follows : \n\n{song_lyrics}"
         response = response.split('\n\n')
 
     else:
@@ -38,7 +38,7 @@ def getLyrics(song_title=""):
 if __name__ == "__main__":
     from sender import sendMessage
 
-    song_title = "How Far I'll go"
+    song_title = "In the edn"
     song_title = song_title.split()
 
     msg = getLyrics(song_title)

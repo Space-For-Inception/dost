@@ -14,7 +14,6 @@ class Song_Lyrics():
 
 
     def get_lyrics(self, song_name):
-        orig_song_name = song_name
         """
             Searches lyrics for the song name passed in.
             Autocorrects any song name spelling errors.
@@ -23,24 +22,10 @@ class Song_Lyrics():
             Returns title and lyrics.
         """
 
-        url = "https://www.googleapis.com/customsearch/v1?key=" + self.GCS_API_KEY + "&cx=" + self.GCS_ENGINE_ID + "&q=" + song_name.replace(" ","%20") + "%20lyrics"
+        url = "https://www.googleapis.com/customsearch/v1/siterestrict?key=" + self.GCS_API_KEY + "&cx=" + self.GCS_ENGINE_ID + "&q=" + song_name.replace(" ","%20") + "%20lyrics"
 
         page = requests.get(url)
         data = page.json()
-
-        try:
-            print(data)
-            spell = data["spelling"]["correctedQuery"]
-
-            song_name = spell[:-7]
-            url = "https://www.googleapis.com/customsearch/v1/siterestrict?key=" + self.GCS_API_KEY + "&cx=" + self.GCS_ENGINE_ID + "&q=" + spell.replace(" ","%20")
-
-            page = requests.get(url)
-            data = page.json()
-            # print(data)
-            
-        except Exception as e:
-            print("Error occured :",e)
 
         try:
             # Gets URL of the first Result
@@ -123,7 +108,7 @@ class Song_Lyrics():
             
         except Exception as e:
             print("Exception Occured : ", e)
-            title = "Err: No lyrics found for " + orig_song_name
+            title = "Err: No lyrics found for " + song_name
             lyrics = ''
         
         # print(lyrics)
