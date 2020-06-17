@@ -67,18 +67,15 @@ def main():
     else:
         msg = validInputs["error"]()
 
+
     if isinstance(msg, list):
-        for resp_message in msg:
-            sendMessage(clientPhoneNo=From,msg=resp_message)
-            sleep(0.5)
-        
-        resp_message = "Type help for more options."
-    else:
-        resp_message = msg + "\n\nType help for more options."
+        msg = "\n\n".join(msg)
 
-    sendMessage(clientPhoneNo=From, msg=resp_message)
+    msg += "\n\nType help for more options."
 
-    return str(resp_message)
+    sendMessage(clientPhoneNo=From, msg=msg)
+
+    return str(msg)
 
 ################################################################################
 ################################################################################

@@ -74,7 +74,7 @@ def __send(To:str, msg:str):
 
     client.messages.create( 
         from_='whatsapp:+14155238886',  
-        body =msg,      
+        body =msg.lstrip('\n').rstrip('\n'),      
         to   =f'whatsapp:{To}'
     )
     sleep(1)
@@ -147,8 +147,5 @@ def sendMessage(msg:str = 'Hello World', clientPhoneNo:str = '+917798044008'):
 
 
 if __name__ == "__main__":
-    # cool = "W"*30 + "jdhsd.hfksh\n\n"*20 + " qwe"*30
-    # cool = cool * 100
-    # for ch in cool:
-    cool = "~!@#$%^&*(():'><?/.,;'[]\\|=-`\n\n\n\nW"*2
+    cool = "Hello World"*2
     sendMessage(msg=f"*{cool}*")
