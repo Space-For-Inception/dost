@@ -1,7 +1,6 @@
 import requests
 from bs4 import BeautifulSoup
 
-
 class Song_Lyrics():
     """
         Initialises a class Song_lyrics.
@@ -30,13 +29,15 @@ class Song_Lyrics():
         data = page.json()
 
         try:
+            print(data)
             spell = data["spelling"]["correctedQuery"]
 
             song_name = spell[:-7]
-            url = "https://www.googleapis.com/customsearch/v1?key=" + self.GCS_API_KEY + "&cx=" + self.GCS_ENGINE_ID + "&q=" + spell.replace(" ","%20")
+            url = "https://www.googleapis.com/customsearch/v1/siterestrict?key=" + self.GCS_API_KEY + "&cx=" + self.GCS_ENGINE_ID + "&q=" + spell.replace(" ","%20")
 
             page = requests.get(url)
             data = page.json()
+            # print(data)
             
         except Exception as e:
             print("Error occured :",e)
@@ -125,6 +126,6 @@ class Song_Lyrics():
             title = "Err: No lyrics found for " + orig_song_name
             lyrics = ''
         
-        print(lyrics)
+        # print(lyrics)
 
         return title, lyrics

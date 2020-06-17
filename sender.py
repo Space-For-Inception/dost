@@ -6,15 +6,20 @@ import QBTTXPSE
 debug = False
 
 def nothing(msg:str):pass
-
 def print_Message(msg:str = ""):
     print("(debug)--->>",msg)
     sleep(1)
+
+
+
 
 D = {
     False:nothing,
     True :print_Message
 }[debug]
+
+
+
 
 def getIt(what:str = None):
     QXE = ''

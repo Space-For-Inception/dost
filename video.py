@@ -86,6 +86,5 @@ if __name__ == '__main__':
         
         response = response[-1]
     
-
     sendMessage(msg=response)
-    print(response)
+    # print(response)
