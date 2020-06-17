@@ -5,16 +5,21 @@ import QBTTXPSE
 
 debug = False
 
-def nothing(msg:str):pass
 
+def nothing(msg:str):pass
 def print_Message(msg:str = ""):
     print("(debug)--->>",msg)
     sleep(1)
+
 
 D = {
     False:nothing,
     True :print_Message
 }[debug]
+
+
+msg_no:int = 0
+
 
 def getIt(what:str = None):
     QXE = ''
@@ -58,11 +63,6 @@ def __isvalid(text:str = None):
     return False
 
 
-
-
-
-
-msg_no = 0
 
 def __send(To:str, msg:str):
     if not __isvalid(msg): return

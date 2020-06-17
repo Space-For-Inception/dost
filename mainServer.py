@@ -50,7 +50,7 @@ def hello():
 
 @app.route("/sms", methods=['POST'])
 def main():
-    From    = request.form.get('From')
+    From    = request.form.get('From')[9:]
     msg     = request.form.get('Body').lower().split()
 
     if len(msg) == 1:
