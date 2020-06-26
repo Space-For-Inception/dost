@@ -127,15 +127,19 @@ def cutMessage(msg:str, sep:str='\n\n'):
 
 
 
-def sendMessage(msg:str = 'Hello World', clientPhoneNo:str = '+917798044008'):
+def sendMessage(msg:str = 'Hello World', clientPhoneNo:str = '+917798044008', media:bool=False):
     D(f"Length of Message : {msg}")
+    
     if len(msg) < 1300:
         D("message Length initially Small")
         __send(To=clientPhoneNo, msg=msg)
-
     else:
-        D("message Length initially Too Big, cutting")
-        msg_parts = cutMessage(msg)
+        if media:
+            D("Media Message detected.")
+            msg_parts = msg.split('\n\n')
+        else:
+            D("message Length initially Too Big, cutting")
+            msg_parts = cutMessage(msg)
 
         D(f"Now the Message is --> {msg_parts}")
 
